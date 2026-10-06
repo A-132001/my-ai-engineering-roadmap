@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Personal AI Engineering Roadmap — a focused path from Software Engineer to AI Engineer.">
+<title>AI Engineering Roadmap — My Journey</title>
+<style>
+:root{
+  --bg:#070b14; --panel:#0d1322; --panel2:#111a2d; --text:#edf3ff; --muted:#9aa8c0;
+  --line:#202c43; --accent:#7c5cff; --accent2:#21d4fd; --green:#38d39f;
+  --orange:#ffb454; --danger:#ff6b81; --shadow:0 20px 60px rgba(0,0,0,.32);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:
+ radial-gradient(circle at 10% 0%,rgba(124,92,255,.17),transparent 30%),
+ radial-gradient(circle at 90% 10%,rgba(33,212,253,.10),transparent 28%),
+ var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
+a{color:inherit}
+.container{width:min(1180px,92%);margin:auto}
+.hero{padding:72px 0 44px;position:relative}
+.badge{display:inline-flex;gap:8px;align-items:center;padding:7px 12px;border:1px solid #293653;border-radius:999px;background:rgba(17,26,45,.7);color:#bfc9dc;font-size:13px}
+.badge span{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 16px var(--green)}
+h1{font-size:clamp(42px,7vw,78px);line-height:.98;letter-spacing:-.055em;margin:20px 0 18px;max-width:900px}
+.gradient{background:linear-gradient(90deg,#fff 10%,#bcaeff 48%,#67dcff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:18px;color:var(--muted);max-width:760px;margin:0 0 28px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 16px;border-radius:11px;border:1px solid var(--line);background:var(--panel);text-decoration:none;font-weight:700;font-size:14px;cursor:pointer;color:var(--text)}
+.btn.primary{background:linear-gradient(135deg,var(--accent),#5a7cff);border-color:transparent}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:24px 0 50px}
+.stat{background:rgba(13,19,34,.75);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.stat strong{display:block;font-size:28px}.stat span{color:var(--muted);font-size:13px}
+.progress-wrap{margin-top:12px;background:#182239;height:7px;border-radius:999px;overflow:hidden}
+.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:.35s}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:38px 0 18px}
+.section-title h2{font-size:30px;margin:0;letter-spacing:-.03em}
+.section-title p{margin:0;color:var(--muted);font-size:14px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.filter{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer}
+.filter.active{color:#fff;border-color:#6552c9;background:#191535}
+.roadmap{position:relative}
+.roadmap:before{content:"";position:absolute;left:23px;top:15px;bottom:15px;width:2px;background:linear-gradient(var(--accent),var(--accent2),transparent)}
+.step{position:relative;margin:0 0 18px;padding-left:62px}
+.node{position:absolute;left:10px;top:22px;width:28px;height:28px;border-radius:50%;background:#0a1020;border:2px solid #5e6d89;z-index:2;display:grid;place-items:center;font-size:12px;font-weight:800}
+.step.done .node{background:var(--green);border-color:var(--green);color:#062016}
+.card{background:linear-gradient(145deg,rgba(17,26,45,.94),rgba(10,15,28,.94));border:1px solid var(--line);border-radius:20px;padding:23px;box-shadow:var(--shadow)}
+.card-top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.kicker{font-size:12px;color:#a99bff;text-transform:uppercase;letter-spacing:.13em;font-weight:800}
+.card h3{font-size:23px;margin:4px 0 6px}.card h3 small{font-size:12px;color:var(--muted);font-weight:500}
+.card-intro{color:var(--muted);margin:0 0 17px}
+.priority{white-space:nowrap;font-size:12px;padding:5px 9px;border-radius:999px;border:1px solid #31405d;color:#b8c6de}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
+.block{border:1px solid #1e2940;background:rgba(7,11,20,.45);border-radius:14px;padding:15px}
+.block h4{margin:0 0 9px;font-size:13px;color:#dbe5fa}.block ul{margin:0;padding-left:18px;color:#aab7cc}.block li{margin:4px 0}
+.resources{display:flex;flex-wrap:wrap;gap:8px}
+.resource{display:inline-flex;align-items:center;gap:7px;padding:8px 10px;border:1px solid #293653;background:#0b1221;border-radius:10px;text-decoration:none;font-size:13px;color:#dce6fb}
+.resource:hover{border-color:#6857d7;background:#121936}
+.check{display:flex;gap:9px;align-items:center;margin-top:14px;color:#aab7cc;font-size:13px;cursor:pointer}
+.check input{accent-color:var(--green);width:17px;height:17px}
+.tip{margin-top:20px;padding:17px;border-radius:16px;border:1px solid #34305c;background:linear-gradient(135deg,rgba(124,92,255,.10),rgba(33,212,253,.05))}
+.tip strong{color:#d8d0ff}.tip p{margin:5px 0 0;color:#b4bfd2}
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.project{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:18px}
+.project .num{color:var(--accent2);font-weight:900;font-size:12px}.project h3{margin:4px 0 6px}.project p{color:var(--muted);font-size:14px;margin:0}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}.tag{font-size:11px;padding:4px 7px;border-radius:7px;background:#182239;color:#b9c7dd}
+.principles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.principle{padding:19px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+.principle b{display:block;margin-bottom:5px}.principle p{margin:0;color:var(--muted);font-size:14px}
+footer{padding:60px 0 30px;color:#72809a;font-size:13px;text-align:center}
+.hidden{display:none!important}
+@media(max-width:850px){.stats{grid-template-columns:repeat(2,1fr)}.grid,.projects,.principles{grid-template-columns:1fr}}
+@media(max-width:560px){.hero{padding-top:45px}.stats{grid-template-columns:1fr 1fr}.card-top{flex-direction:column}.step{padding-left:49px}.roadmap:before{left:18px}.node{left:5px}.section-title{display:block}.section-title p{margin-top:6px}}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="container">
+  <div class="badge"><span></span> Personal AI Engineering Roadmap</div>
+  <h1>From <span class="gradient">Software Engineer</span><br>to AI Engineer.</h1>
+  <p>A focused path built around your existing engineering background. Learn the AI foundations you actually need, then move quickly into LLMs, RAG, Agents and production AI systems.</p>
+  <div class="hero-actions">
+    <a class="btn primary" href="#roadmap">Explore Roadmap ↓</a>
+    <a class="btn" href="#capstone">Jump to Capstone</a>
+    <button class="btn" onclick="resetProgress()">Reset Progress</button>
+  </div>
+</div>
+</header>
+
+<main class="container">
+<section class="stats">
+  <div class="stat"><strong id="doneCount">0</strong><span>Steps completed</span></div>
+  <div class="stat"><strong>10</strong><span>Core stages</span></div>
+  <div class="stat"><strong>5</strong><span>Portfolio projects</span></div>
+  <div class="stat"><strong id="pct">0%</strong><span>Overall progress</span><div class="progress-wrap"><div class="progress-bar" id="progress"></div></div></div>
+</section>
+
+<section id="roadmap">
+<div class="section-title">
+  <div><h2>The Roadmap</h2><p>Follow the order. Don't turn every topic into a rabbit hole.</p></div>
+</div>
+<div class="filters">
+  <button class="filter active" data-filter="all">All</button>
+  <button class="filter" data-filter="foundation">Foundation</button>
+  <button class="filter" data-filter="core">AI Core</button>
+  <button class="filter" data-filter="production">Production</button>
+</div>
+
+<div class="roadmap">
+
+<!-- 1 -->
+<article class="step" data-category="foundation" data-id="python">
+<div class="node">1</div><div class="card">
+<div class="card-top"><div><div class="kicker">Foundation</div><h3>Python + Problem Solving</h3><p class="card-intro">You already have programming experience, so move fast. The goal is Python fluency for AI systems, not beginner certification.</p></div><span class="priority">HIGH</span></div>
+<div class="grid">
+<div class="block"><h4>Study</h4><ul><li>Advanced Python & OOP</li><li>Typing, decorators, generators</li><li>Async / await & concurrency</li><li>Data structures & algorithms</li><li>Testing & clean code</li></ul></div>
+<div class="block"><h4>Best resources</h4><div class="resources">
+<a class="resource" href="https://docs.python.org/3/tutorial/" target="_blank">Python Tutorial ↗</a>
+<a class="resource" href="https://leetcode.com/" target="_blank">LeetCode ↗</a>
+<a class="resource" href="https://www.hackerrank.com/domains/python" target="_blank">HackerRank ↗</a>
+</div></div>
+</div>
+<label class="check"><input type="checkbox" onchange="toggleStep(this)"> I completed this stage</label>
+<div class="tip"><strong>Your advantage:</strong><p>Don't spend months here. Build one FastAPI service while practicing 50–70 problems.</p></div>
+</div></article>
+
+<!-- 2 -->
+<article class="step" data-category="foundation" data-id="math">
+<div class="node">2</div><div class="card">
+<div class="card-top"><div><div class="kicker">Foundation</div><h3>Math for AI</h3><p class="card-intro">Learn enough math to understand models, embeddings, optimization and evaluation—not to become a mathematician.</p></div><span class="priority">MEDIUM</span></div>
+<div class="grid">
+<div class="block"><h4>Study</h4><ul><li>Probability & conditional probability</li><li>Bayes theorem & distributions</li><li>Mean, variance, correlation</li><li>Vectors & matrices</li><li>Dot / matrix multiplication</li><li>Derivatives & gradient descent</li></ul></div>
+<div class="block"><h4>Best resources</h4><div class="resources">
+<a class="resource" href="https://www.deeplearning.ai/specializations/mathematics-for-machine-learning-and-data-science/" target="_blank">DeepLearning.AI Math ↗</a>
+<a class="resource" href="https://www.khanacademy.org/math/statistics-probability" target="_blank">Khan Academy Stats ↗</a>
+</div></div>
+</div>
+<label class="check"><input type="checkbox" onchange="toggleStep(this)"> I completed this stage</label>
+<div class="tip"><strong>Your rule:</strong><p>If a math topic isn't helping you understand ML, embeddings, attention or optimization, don't go unnecessarily deep into it.</p></div>
+</div></article>
+
+<!-- 3 -->
+<article class="step" data-category="foundation" data-id="data">
+<div class="node">3</div><div class="card">
+<div class="card-top"><div><div class="kicker">Foundation</div><h3>NumPy + Pandas + Visualization</h3><p class="card-intro">Just enough data handling to clean, inspect and prepare datasets for ML pipelines.</p></div><span class="priority">MEDIUM</span></div>
+<div class="grid">
+<div class="block"><h4>Study</h4><ul><li>NumPy arrays & vectorization</li><li>Pandas DataFrames & cleaning</li><li>Grouping, merging & feature creation</li><li>Matplotlib / Seaborn basics</li></ul></div>
+<div class="block"><h4>Best resources</h4><div class="resources">
+<a class="resource" href="https://www.youtube.com/@AlexTheAnalyst" target="_blank">Alex The Analyst ↗</a>
+<a class="resource" href="https://www.kaggle.com/learn" target="_blank">Kaggle Learn ↗</a>
+</div></div>
+</div>
+<label class="check"><input type="checkbox" onchange="toggleStep(this)"> I completed this stage</label>
+<div class="tip"><strong>Don't become a Data Analyst:</strong><p>One solid EDA project is enough. Your destination is AI Engineering.</p></div>
+</div></article>
+
+<!-- 4 -->
+<article class="step" data-category="core" data-id="ml">
+<div class="node">4</div><div class="card">
+<div class="card-top"><div><div class="kicker">AI Core</div><h3>Machine Learning — Andrew Ng</h3><p class="card-intro">Build the ML mental model before jumping into deep learning and LLMs.</p></div><span class="priority">VERY HIGH</span></div>
+<div class="grid">
+<div class="block"><h4>Study</h4><ul><li>Linear & logistic regression</li><li>Gradient descent & regularization</li><li>Decision trees, ensembles & XGBoost</li><li>Clustering & anomaly detection</li><li>Bias / variance & evaluation</li><li>Feature engineering</li></ul></div>
+<div class="block"><h4>Best resources</h4><div class="resources">
+<a class="resource" href="https://www.deeplearning.ai/specializations/machine-learning/" target="_blank">Andrew Ng ML ↗</a>
+<a class="resource" href="https://www.kaggle.com/learn" target="_blank">Kaggle Learn ↗</a>
+</div></div>
+</div>
+<label class="check"><input type="checkbox" onchange="toggleStep(this)"> I completed this stage</label>
+<div class="tip"><strong>Project target:</strong><p>Build 2 end-to-end ML systems. Think about data → training → evaluation → API, not just notebooks.</p></div>
+</div></article>
+
+<!-- 5 -->
+<article class="step" data-category="core" data-id="dl">
+<div class="node">5</div><div class="card">
+<div class="card-top"><div><div class="kicker">AI Core</div><h3>Deep Learning — Andrew Ng</h3><p class="card-intro">This is the bridge from classical ML to modern AI.</p></div><span class="priority">VERY HIGH</span></div>
+<div class="grid">
+<div class="block"><h4>Study</h4><ul><li>Neural networks & backpropagation</li><li>Optimization & regularization</li><li>CNNs</li><li>RNNs / LSTMs</li><li>Attention</li><li>Transformers</li></ul></div>
+<div class="block"><h4>Best resources</h4><div class="resources">
+<a class="resource" href="https://www.deeplearning.ai/specializations/deep-learning/" target="_blank">Andrew Ng DLS ↗</a>
+<a class="resource" href="https://jalammar.github.io/illustrated-transformer/" target="_blank">Illustrated Transformer ↗</a>
+</div></div>
+</div>
+<label class="check"><input type="checkbox" onchange="toggleStep(this)"> I completed this stage</label>
+<div class="tip"><strong>Critical:</strong><p>Understand attention and transformers deeply. They are the conceptual gateway to LLM engineering.</p></div>
+</div></article>
+
+<!-- 6 -->
+<article class="step" data-category="core" data-id="llm">
+<div class="node">6</div><div class="card">
+<div class="card-top"><div><div class="kicker">AI Core</div><h3>LLM Engineering</h3><p class="card-intro">Now specialize. Learn how modern language models are represented, loaded, fine-tuned and served.</p></div><span class="priority">CORE</span></div>
+<div class="grid">
+<div class="block"><h4>Study</h4><ul><li>Tokenization & embeddings</li><li>Transformer internals</li><li>Inference & generation</li><li>Sampling / temperature</li><li>Hugging Face Transformers</li><li>Fine-tuning, LoRA / QLoRA</li><li>Quantization</li><li>Local inference: Ollama / vLLM</li></ul></div>
+<div class="block"><h4>Best resources</h4><div class="resources">
+<a class="resource" href="https://huggingface.co/learn/llm-course/chapter1/1" target="_blank">Hugging Face LLM Course ↗</a>
+<a class="resource" href="https://huggingface.co/" target="_blank">Hugging Face Hub ↗</a>
+<a class="resource" href="https://ollama.com/" target="_blank">Ollama ↗</a>
+<a class="resource" href="https://docs.vllm.ai/" target="_blank">vLLM Docs ↗</a>
+</div></div>
+</div>
+<label class="check"><input type="checkbox" onchange="toggleStep(this)"> I completed this stage</label>
+<div class="tip"><strong>Project:</strong><p>Build a local LLM chat API with FastAPI, streaming responses and a simple React UI.</p></div>
+</div></article>
+
+<!-- 7 -->
+<article class="step" data-category="core" data-id="rag">
+<div class="node">7</div><div class="card">
+<div class="card-top"><div><div class="kicker">AI Core</div><h3>RAG Engineering</h3><p class="card-intro">Learn to build reliable knowledge-grounded systems instead of simply attaching an LLM to a vector database.</p></div><span class="priority">CORE</span></div>
+<div class="grid">
+<div class="block"><h4>Study</h4><ul><li>Document parsing & chunking</li><li>Embeddings & vector search</li><li>Vector databases</li><li>Retrieval & reranking</li><li>Metadata filtering</li><li>Hybrid search & query rewriting</li><li>Citations & RAG evaluation</li></ul></div>
+<div class="block"><h4>Best resources</h4><div class="resources">
+<a class="resource" href="https://www.coursera.org/professional-certificates/ibm-rag-and-agentic-ai" target="_blank">IBM RAG & Agentic AI ↗</a>
+<a class="resource" href="https://python.langchain.com/docs/" target="_blank">LangChain Docs ↗</a>
+<a class="resource" href="https://docs.llamaindex.ai/" target="_blank">LlamaIndex Docs ↗</a>
+<a class="resource" href="https://github.com/pgvector/pgvector" target="_blank">pgvector ↗</a>
+</div></div>
+</div>
+<label class="check"><input type="checkbox" onchange="toggleStep(this)"> I completed this stage</label>
+<div class="tip"><strong>Capstone starts here:</strong><p>Build a Company Knowledge Assistant that answers from private documents and returns sources with every answer.</p></div>
+</div></article>
+
+<!-- 8 -->
+<article class="step" data-category="core" data-id="agents">
+<div class="node">8</div><div class="card">
+<div class="card-top"><div><div class="kicker">AI Core</div><h3>Agentic AI</h3><p class="card-intro">Move from “chat with documents” to systems that reason over tasks, maintain state and call tools.</p></div><span class="priority">CORE</span></div>
+<div class="grid">
+<div class="block"><h4>Study</h4><ul><li>Function / tool calling</li><li>Agent loops & routing</li><li>State & memory</li><li>Planning & workflows</li><li>Human-in-the-loop</li><li>Multi-agent patterns</li><li>MCP</li></ul></div>
+<div class="block"><h4>Best resources</h4><div class="resources">
+<a class="resource" href="https://www.coursera.org/professional-certificates/ibm-rag-and-agentic-ai" target="_blank">IBM Agentic AI ↗</a>
+<a class="resource" href="https://docs.langchain.com/oss/python/langgraph/overview" target="_blank">LangGraph Docs ↗</a>
+<a class="resource" href="https://modelcontextprotocol.io/" target="_blank">MCP ↗</a>
+</div></div>
+</div>
+<label class="check"><input type="checkbox" onchange="toggleStep(this)"> I completed this stage</label>
+<div class="tip"><strong>Don't framework-hop:</strong><p>Master one agent orchestration approach first. LangGraph is a strong choice for stateful, controllable workflows.</p></div>
+</div></article>
+
+<!-- 9 -->
+<article class="step" data-category="production" data-id="production">
+<div class="node">9</div><div class="card">
+<div class="card-top"><div><div class="kicker">Production</div><h3>Production AI Engineering</h3><p class="card-intro">Turn prototypes into reliable systems. This is where your existing backend / DevOps background becomes a major advantage.</p></div><span class="priority">CORE</span></div>
+<div class="grid">
+<div class="block"><h4>Study</h4><ul><li>FastAPI, Docker & Linux</li><li>PostgreSQL / Redis</li><li>CI/CD & deployment</li><li>LLM evaluation & observability</li><li>Tracing, latency & token cost</li><li>Caching & model serving</li><li>Prompt injection & authorization</li><li>RBAC / privacy / data security</li></ul></div>
+<div class="block"><h4>Best resource</h4><div class="resources">
+<a class="resource" href="https://fullstackdeeplearning.com/course/" target="_blank">Full Stack Deep Learning ↗</a>
+<a class="resource" href="https://fastapi.tiangolo.com/" target="_blank">FastAPI ↗</a>
+<a class="resource" href="https://docs.docker.com/" target="_blank">Docker Docs ↗</a>
+</div></div>
+</div>
+<label class="check"><input type="checkbox" onchange="toggleStep(this)"> I completed this stage</label>
+<div class="tip"><strong>Your advantage:</strong><p>Don't over-study generic backend topics. Apply what you already know directly to AI workloads: queues, APIs, auth, containers and deployment.</p></div>
+</div></article>
+
+<!-- 10 -->
+<article class="step" data-category="production" data-id="capstone">
+<div class="node">10</div><div class="card">
+<div class="card-top"><div><div class="kicker">Capstone</div><h3>Enterprise AI Assistant</h3><p class="card-intro">Your final case study: a production-oriented private AI platform combining RAG, agents, tools and engineering.</p></div><span class="priority">FINAL BOSS</span></div>
+<div class="grid">
+<div class="block"><h4>Build</h4><ul><li>React frontend</li><li>FastAPI backend</li><li>RAG with citations</li><li>Agent + tools</li><li>PostgreSQL + vector search</li><li>Authentication + RBAC</li><li>Evaluation dashboard</li><li>Observability + logging</li><li>Dockerized deployment</li><li>Local LLM option</li></ul></div>
+<div class="block"><h4>Architecture</h4><div class="resources">
+<span class="resource">React</span><span class="resource">FastAPI</span><span class="resource">PostgreSQL</span><span class="resource">pgvector</span><span class="resource">LLM</span><span class="resource">RAG</span><span class="resource">Agent</span><span class="resource">Docker</span>
+</div></div>
+</div>
+<label class="check"><input type="checkbox" onchange="toggleStep(this)"> I completed the capstone</label>
+<div class="tip"><strong>Portfolio standard:</strong><p>Document the business problem, architecture, trade-offs, evaluation results, failure analysis, security considerations and deployment—not just the code.</p></div>
+</div></article>
+
+</div>
+</section>
+
+<section id="projects">
+<div class="section-title"><div><h2>Portfolio Projects</h2><p>Build progressively. Each project unlocks the next skill.</p></div></div>
+<div class="projects">
+<div class="project"><div class="num">PROJECT 01</div><h3>End-to-End ML API</h3><p>Train a useful model, evaluate it, expose it through FastAPI and package it with Docker.</p><div class="stack"><span class="tag">scikit-learn</span><span class="tag">FastAPI</span><span class="tag">Docker</span></div></div>
+<div class="project"><div class="num">PROJECT 02</div><h3>Local LLM Chat</h3><p>Run an open model locally and expose streaming generation through an API and UI.</p><div class="stack"><span class="tag">Hugging Face</span><span class="tag">Ollama</span><span class="tag">FastAPI</span></div></div>
+<div class="project"><div class="num">PROJECT 03</div><h3>Production RAG</h3><p>Private documents → retrieval → reranking → grounded answer + citations.</p><div class="stack"><span class="tag">Embeddings</span><span class="tag">pgvector</span><span class="tag">RAG</span></div></div>
+<div class="project"><div class="num">PROJECT 04</div><h3>Tool-Using Agent</h3><p>An agent that decides when to search, query a database, call an API or execute a calculation.</p><div class="stack"><span class="tag">LangGraph</span><span class="tag">Tools</span><span class="tag">MCP</span></div></div>
+<div class="project"><div class="num">PROJECT 05</div><h3>Enterprise AI Platform</h3><p>Combine RAG + agents + auth + evaluation + observability + deployment into one case study.</p><div class="stack"><span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">Postgres</span><span class="tag">Docker</span></div></div>
+</div>
+</section>
+
+<section id="tips">
+<div class="section-title"><div><h2>Rules for Your Journey</h2><p>These are intentionally personalized to your target.</p></div></div>
+<div class="principles">
+<div class="principle"><b>01 — Don't become a Data Scientist</b><p>Statistics, Pandas and classical ML are foundations. Your destination is AI systems, not analytics.</p></div>
+<div class="principle"><b>02 — Use your engineering advantage</b><p>You already understand software engineering. Apply it to AI instead of restarting from zero.</p></div>
+<div class="principle"><b>03 — Build while learning</b><p>Every major concept should end in a small working artifact. Avoid six months of passive courses.</p></div>
+<div class="principle"><b>04 — Learn RAG deeply</b><p>Don't just use a framework. Understand parsing, chunking, embeddings, retrieval, reranking and evaluation.</p></div>
+<div class="principle"><b>05 — Don't framework-hop</b><p>One solid stack is better than knowing the names of ten agent frameworks.</p></div>
+<div class="principle"><b>06 — Production matters</b><p>Latency, cost, security, observability, evaluation and deployment are part of AI engineering—not extras.</p></div>
+</div>
+</section>
+
+<section id="capstone">
+<div class="section-title"><div><h2>Your North Star</h2><p>Everything on this page should eventually converge here.</p></div></div>
+<div class="card">
+<div class="kicker">FINAL SYSTEM</div>
+<h3 style="font-size:30px">Private Enterprise AI Assistant</h3>
+<p class="card-intro">A bilingual, secure assistant that answers from company knowledge, cites its sources and uses controlled tools when a task requires data or actions.</p>
+<div class="grid">
+<div class="block"><h4>Core capabilities</h4><ul><li>Arabic + English</li><li>Streaming responses</li><li>Document ingestion</li><li>Grounded RAG with citations</li><li>Tool-using agent</li><li>Authentication & RBAC</li><li>Evaluation & feedback</li><li>Observability</li></ul></div>
+<div class="block"><h4>Suggested stack</h4><div class="resources"><span class="resource">React</span><span class="resource">FastAPI</span><span class="resource">PostgreSQL</span><span class="resource">pgvector</span><span class="resource">LangGraph</span><span class="resource">Hugging Face</span><span class="resource">Ollama / vLLM</span><span class="resource">Docker</span></div></div>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container">Built as a personal roadmap • Progress is saved automatically in your browser • AI Engineer track</div>
+</footer>
+
+<script>
+const KEY="ai-roadmap-progress-v1";
+const state=JSON.parse(localStorage.getItem(KEY)||"{}");
+
+function applyState(){
+  document.querySelectorAll(".step").forEach(step=>{
+    const id=step.dataset.id, cb=step.querySelector("input");
+    cb.checked=!!state[id];
+    step.classList.toggle("done",!!state[id]);
+  });
+  updateProgress();
+}
+function toggleStep(cb){
+  const id=cb.closest(".step").dataset.id;
+  state[id]=cb.checked;
+  localStorage.setItem(KEY,JSON.stringify(state));
+  cb.closest(".step").classList.toggle("done",cb.checked);
+  updateProgress();
+}
+function updateProgress(){
+  const total=document.querySelectorAll(".step").length;
+  const done=[...document.querySelectorAll(".step")].filter(s=>s.querySelector("input").checked).length;
+  const pct=Math.round(done/total*100);
+  document.getElementById("doneCount").textContent=done;
+  document.getElementById("pct").textContent=pct+"%";
+  document.getElementById("progress").style.width=pct+"%";
+}
+function resetProgress(){
+  if(confirm("Reset all roadmap progress?")){
+    localStorage.removeItem(KEY); applyState();
+  }
+}
+document.querySelectorAll(".filter").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    const f=btn.dataset.filter;
+    document.querySelectorAll(".step").forEach(s=>{
+      s.classList.toggle("hidden",f!=="all" && s.dataset.category!==f);
+    });
+  });
+});
+applyState();
+</script>
+</body>
+</html>
